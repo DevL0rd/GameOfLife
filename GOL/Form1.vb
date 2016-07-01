@@ -9,9 +9,8 @@
     Private tTicks As Integer = 0
     Private MaxTicks As Integer = 0
     Private IsRunning As Boolean = True
-    Private W_Cubes As Integer = 0
-    Private H_Cubes As Integer = 0
-    Private Cubes As Integer = 100
+    Private W_Cubes As Integer = 175
+    Private H_Cubes As Integer = 100
     Private CubeStates(,) As Boolean
     Private IsPaused As Boolean = True
     Private Mx As Integer = 0
@@ -39,6 +38,13 @@
         TimerLoop.Interval = 40
         TimerLoop.Enabled = True
         TimerLoop.Start()
+        Halfx = W_Cubes / 2
+        Halfy = H_Cubes / 2
+        ProgressBar1.Visible = False
+        MapW.Value = W_Cubes
+        lbl_MapW.Text = "Width(" & W_Cubes & ")"
+        MapH.Value = H_Cubes
+        lbl_MapH.Text = "Height(" & H_Cubes & ")"
     End Sub
     Sub GameTick()
         Application.DoEvents()
@@ -54,34 +60,41 @@
     End Sub
     Sub GenerateNewMap()
         IsPaused = True
-        H_Cubes = Cubes
-        W_Cubes = Cubes
+
         xIndex = 0
         ReDim CubeStates(900, 900)
+        ProgressBar1.Maximum = (W_Cubes + 3) * (H_Cubes + 3)
+        ProgressBar1.Visible = True
+        ProgressBar1.Value = 0
         While xIndex <= W_Cubes + 2
             yIndex = 0
             While yIndex <= H_Cubes + 2
                 CubeStates(xIndex, yIndex) = False
+                CubeAge(xIndex, yIndex) = 0
+                ProgressBar1.Value += 1
                 yIndex += 1
             End While
             xIndex += 1
         End While
-        Halfx = Cubes / 2
-        Halfy = Halfx
+        Halfx = W_Cubes / 2
+        Halfy = H_Cubes / 2
+        ProgressBar1.Visible = False
+        MapW.Value = W_Cubes
+        lbl_MapW.Text = "Width(" & W_Cubes & ")"
+        MapH.Value = H_Cubes
+        lbl_MapH.Text = "Height(" & H_Cubes & ")"
     End Sub
     Sub InitGraphics()
         'Initialize graphics
         G = CreateGraphics()
-        BB = New Bitmap(Width - 15, Height - 39 - BottomBar.Height)
+        BB = New Bitmap(Width - 15, Height - 39 - BottomPanel.Height)
         BBG = CreateGraphics()
     End Sub
     Private StateBKUP(900, 900) As Boolean
+    Private CubeAge(900, 900) As Integer
     Sub BKUPStates()
-
-
         xIndex = 0
         While xIndex <= W_Cubes + 2
-
             yIndex = 0
             While yIndex <= H_Cubes + 2
                 StateBKUP(xIndex, yIndex) = CubeStates(xIndex, yIndex)
@@ -92,39 +105,56 @@
     End Sub
     Sub SaveFile(FilePath As String)
         xIndex = 0
+        writeIni(FilePath, "WorldData", "W_Cubes", W_Cubes)
+        writeIni(FilePath, "WorldData", "H_Cubes", H_Cubes)
+        writeIni(FilePath, "WorldData", "xInterval", xInterval)
+        writeIni(FilePath, "WorldData", "yInterval", yInterval)
+        writeIni(FilePath, "WorldData", "MapX", MapX)
+        writeIni(FilePath, "WorldData", "MapY", MapY)
+        ProgressBar1.Maximum = (W_Cubes + 3) * (H_Cubes + 3)
+        ProgressBar1.Visible = True
+        ProgressBar1.Value = 0
         While xIndex <= W_Cubes + 2
             yIndex = 0
-            writeIni(FilePath, "WorldData", "Cubes", Cubes)
-            writeIni(FilePath, "WorldData", "W_Cubes", W_Cubes)
-            writeIni(FilePath, "WorldData", "H_Cubes", H_Cubes)
-            writeIni(FilePath, "WorldData", "xInterval", xInterval)
-            writeIni(FilePath, "WorldData", "yInterval", yInterval)
-            writeIni(FilePath, "WorldData", "MapX", MapX)
-            writeIni(FilePath, "WorldData", "MapY", MapY)
+
             While yIndex <= H_Cubes + 2
                 writeIni(FilePath, xIndex & "-" & yIndex, "IsLive", CubeStates(xIndex, yIndex).ToString)
+                ProgressBar1.Value += 1
                 yIndex += 1
             End While
             xIndex += 1
         End While
+        ProgressBar1.Visible = False
     End Sub
     Sub LoadFile(FilePath As String)
         xIndex = 0
-        Cubes = ReadIni(FilePath, "WorldData", "Cubes", "")
         W_Cubes = ReadIni(FilePath, "WorldData", "W_Cubes", "")
         H_Cubes = ReadIni(FilePath, "WorldData", "H_Cubes", "")
         xInterval = ReadIni(FilePath, "WorldData", "xInterval", "")
         yInterval = ReadIni(FilePath, "WorldData", "yInterval", "")
         MapX = ReadIni(FilePath, "WorldData", "MapX", "")
         MapY = ReadIni(FilePath, "WorldData", "MapY", "")
+        ProgressBar1.Maximum = (W_Cubes + 3) * (H_Cubes + 3)
+        ProgressBar1.Visible = True
+        ProgressBar1.Value = 0
+        Dim thiscount As Integer = 0
         While xIndex <= W_Cubes + 2
             yIndex = 0
             While yIndex <= H_Cubes + 2
                 CubeStates(xIndex, yIndex) = CBool(ReadIni(FilePath, xIndex & "-" & yIndex, "IsLive", ""))
+                thiscount += 1
+                ProgressBar1.Value += 1
                 yIndex += 1
             End While
             xIndex += 1
         End While
+        Halfx = W_Cubes / 2
+        Halfy = H_Cubes / 2
+        MapW.Value = W_Cubes
+        lbl_MapW.Text = "Width(" & W_Cubes & ")"
+        MapH.Value = H_Cubes
+        lbl_MapH.Text = "Height(" & H_Cubes & ")"
+        ProgressBar1.Visible = False
     End Sub
     Sub RESTstates()
         xIndex = 0
@@ -200,30 +230,35 @@
         myy = 0
         Dim AreaOutline As New Pen(Color.Blue)
         AreaOutline.Width = 2
+        G.FillRectangle(New SolidBrush(Color.Black), MapX + xInterval, MapY + yInterval, xInterval * (W_Cubes - 1), yInterval * (H_Cubes - 1))
         While xIndex <= W_Cubes - 1
             myx = MapX + (xIndex * xInterval)
+
+            If ShowGrid.Checked Then
+                G.DrawLine(Pens.DarkGray, New Point(myx, MapY + yInterval), New Point(myx, MapY + (yInterval * H_Cubes)))
+            End If
             If IsPaused Then
                 If xIndex = Halfx Or xIndex = Halfx + 1 Then
-                    G.DrawLine(Pens.Red, New Point(myx, MapY + yInterval), New Point(myx, MapY + (yInterval * H_Cubes)))
-                Else
-                    G.DrawLine(Pens.DarkGray, New Point(myx, MapY + yInterval), New Point(myx, MapY + (yInterval * H_Cubes)))
+                    G.DrawLine(Pens.Blue, New Point(myx, MapY + yInterval), New Point(myx, MapY + (yInterval * H_Cubes)))
                 End If
-
             End If
             yIndex = 1
             While yIndex <= H_Cubes - 1S
                 myy = MapY + (yIndex * yInterval)
+
+
+                If ShowGrid.Checked Then
+                    G.DrawLine(Pens.DarkGray, New Point(MapX + xInterval, myy), New Point(MapX + (xInterval * W_Cubes), myy))
+                End If
                 If IsPaused Then
                     If yIndex = Halfy Or yIndex = Halfy + 1 Then
-                        G.DrawLine(Pens.Red, New Point(MapX + xInterval, myy), New Point(MapX + (xInterval * W_Cubes), myy))
-                    Else
-                        G.DrawLine(Pens.DarkGray, New Point(MapX + xInterval, myy), New Point(MapX + (xInterval * W_Cubes), myy))
+                        G.DrawLine(Pens.Blue, New Point(MapX + xInterval, myy), New Point(MapX + (xInterval * W_Cubes), myy))
                     End If
                 End If
                 If CubeStates(xIndex, yIndex) = True Then
-
-                    G.FillEllipse(Brushes.LightGreen, myx, myy, xInterval, yInterval)
+                    G.FillEllipse(Brushes.Green, myx + 1, myy + 1, xInterval - 2, yInterval - 2)
                 End If
+
                 yIndex += 1
             End While
             xIndex += 1
@@ -235,7 +270,12 @@
         BBG = CreateGraphics()
         BBG.DrawImage(BB, 0, 0)
         ' FIX OVERDRAW
-        G.Clear(Color.Black)
+        If IsPaused Then
+            G.Clear(Color.DarkRed)
+        Else
+            G.Clear(Color.DarkGreen)
+        End If
+
         CountTick()
     End Sub
     Private Sub CountTick()
@@ -288,7 +328,6 @@
                         CubeStates(xIndex, yIndex) = False
                     End If
                 End If
-
                 yIndex += 1
             End While
             xIndex += 1
@@ -298,25 +337,19 @@
     Private Sub Form1_KeyDown(sender As Object, e As KeyEventArgs) Handles Me.KeyDown
         If e.KeyValue = Keys.Space Then
             If IsPaused Then
-
-                BKUPStates()
                 IsPaused = False
                 TimerLoop.Interval = RenderSpeed.Value
-
             Else
                 TimerLoop.Interval = 1
-                RESTstates()
                 IsPaused = True
             End If
         ElseIf e.KeyValue = Keys.C Then
             TimerLoop.Interval = 1
             GenerateNewMap()
         ElseIf e.KeyValue = Keys.F1 Then
-            SaveFile(BIN & "QuickSave.GOL")
-        ElseIf e.KeyValue = Keys.F2 Then
-            IsPaused = True
-            LoadFile(BIN & "QuickSave.GOL")
             BKUPStates()
+        ElseIf e.KeyValue = Keys.F2 Then
+            RESTstates()
         ElseIf e.KeyValue = Keys.W Then
             MapY += yInterval
         ElseIf e.KeyValue = Keys.S Then
@@ -329,7 +362,6 @@
     End Sub
 
     Private Sub Form1_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-
         If e.Button = MouseButtons.Left Then
             LeftMouse = True
         ElseIf e.Button = MouseButtons.Right Then
@@ -367,13 +399,15 @@
         If e.Delta > 0 Then
             xInterval += 1
             yInterval += 1
-            MapX -= W_Cubes / xInterval
-            MapY -= H_Cubes / yInterval
         ElseIf e.Delta < 0 Then
             xInterval -= 1
             yInterval -= 1
-            MapX += W_Cubes / xInterval
-            MapY += H_Cubes / yInterval
+            If xInterval = 0 Then
+                xInterval = 1
+            End If
+            If yInterval = 0 Then
+                yInterval = 1
+            End If
         End If
     End Sub
 
@@ -396,6 +430,34 @@
         If System.IO.File.Exists(OpenFileDialog1.FileName) Then
             LoadFile(OpenFileDialog1.FileName)
         End If
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub btn_SaveState_Click(sender As Object, e As EventArgs) Handles btn_SaveState.Click
+        BKUPStates()
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub btn_LoadState_Click(sender As Object, e As EventArgs) Handles btn_LoadState.Click
+        RESTstates()
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub ShowGrid_CheckedChanged(sender As Object, e As EventArgs) Handles ShowGrid.CheckedChanged
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub MapW_Scroll(sender As Object, e As EventArgs) Handles MapW.Scroll
+        W_Cubes = MapW.Value
+        lbl_MapW.Text = "Width(" & W_Cubes & ")"
+        Halfx = W_Cubes / 2
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub TrackBar1_Scroll(sender As Object, e As EventArgs) Handles MapH.Scroll
+        H_Cubes = MapH.Value
+        lbl_MapH.Text = "Height(" & H_Cubes & ")"
+        Halfy = H_Cubes / 2
         ActiveControl = Nothing
     End Sub
 End Class
