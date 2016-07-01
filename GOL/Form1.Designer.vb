@@ -38,6 +38,7 @@ Partial Class Form1
         Me.btn_Load = New System.Windows.Forms.Button()
         Me.btn_Save = New System.Windows.Forms.Button()
         Me.RenderSpeed = New System.Windows.Forms.TrackBar()
+        Me.Algorythm = New System.Windows.Forms.ComboBox()
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.OpenFileDialog1 = New System.Windows.Forms.OpenFileDialog()
         Me.BottomPanel.SuspendLayout()
@@ -68,6 +69,7 @@ Partial Class Form1
         Me.BottomPanel.Controls.Add(Me.btn_Load)
         Me.BottomPanel.Controls.Add(Me.btn_Save)
         Me.BottomPanel.Controls.Add(Me.RenderSpeed)
+        Me.BottomPanel.Controls.Add(Me.Algorythm)
         Me.BottomPanel.Location = New System.Drawing.Point(0, 817)
         Me.BottomPanel.Name = "BottomPanel"
         Me.BottomPanel.Size = New System.Drawing.Size(1406, 30)
@@ -234,12 +236,27 @@ Partial Class Form1
         Me.RenderSpeed.Minimum = 1
         Me.RenderSpeed.Name = "RenderSpeed"
         Me.RenderSpeed.RightToLeft = System.Windows.Forms.RightToLeft.Yes
-        Me.RenderSpeed.Size = New System.Drawing.Size(196, 22)
+        Me.RenderSpeed.Size = New System.Drawing.Size(192, 22)
         Me.RenderSpeed.SmallChange = 10
         Me.RenderSpeed.TabIndex = 0
         Me.RenderSpeed.TabStop = False
         Me.RenderSpeed.TickFrequency = 10
         Me.RenderSpeed.Value = 40
+        '
+        'Algorythm
+        '
+        Me.Algorythm.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
+        Me.Algorythm.BackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer), CType(CType(64, Byte), Integer))
+        Me.Algorythm.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Algorythm.ForeColor = System.Drawing.Color.White
+        Me.Algorythm.FormattingEnabled = True
+        Me.Algorythm.Items.AddRange(New Object() {"Default", "Replicator", "Replicator 2", "Seeds", "Live Free or Die", "Life Without Death", "Maze", "Mazectric", "2X2", "High Life", "Move", "Day & Night"})
+        Me.Algorythm.Location = New System.Drawing.Point(1232, 6)
+        Me.Algorythm.Name = "Algorythm"
+        Me.Algorythm.Size = New System.Drawing.Size(171, 21)
+        Me.Algorythm.TabIndex = 13
+        Me.Algorythm.TabStop = False
+        Me.Algorythm.Text = "Default"
         '
         'OpenFileDialog1
         '
@@ -280,4 +297,5 @@ Partial Class Form1
     Friend WithEvents lbl_MapH As Label
     Friend WithEvents MapH As TrackBar
     Friend WithEvents Label1 As Label
+    Friend WithEvents Algorythm As ComboBox
 End Class

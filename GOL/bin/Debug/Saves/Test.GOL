@@ -6,6 +6,7 @@ xInterval=8
 yInterval=8
 MapX=0
 MapY=0
+AlgToUse=Default
 [0-0]
 IsLive=False
 [0-1]

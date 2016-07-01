@@ -30,6 +30,7 @@
     Public BIN As String = Application.StartupPath & "\Saves\"
     Dim MapX As Integer = 0
     Dim MapY As Integer = 0
+    Dim AlgToUse As String = "Default"
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.Show()
         InitGraphics()
@@ -111,6 +112,7 @@
         writeIni(FilePath, "WorldData", "yInterval", yInterval)
         writeIni(FilePath, "WorldData", "MapX", MapX)
         writeIni(FilePath, "WorldData", "MapY", MapY)
+        writeIni(FilePath, "WorldData", "AlgToUse", AlgToUse)
         ProgressBar1.Maximum = (W_Cubes + 3) * (H_Cubes + 3)
         ProgressBar1.Visible = True
         ProgressBar1.Value = 0
@@ -134,6 +136,8 @@
         yInterval = ReadIni(FilePath, "WorldData", "yInterval", "")
         MapX = ReadIni(FilePath, "WorldData", "MapX", "")
         MapY = ReadIni(FilePath, "WorldData", "MapY", "")
+        AlgToUse = ReadIni(FilePath, "WorldData", "AlgToUse", "")
+        Algorythm.SelectedItem = AlgToUse
         ProgressBar1.Maximum = (W_Cubes + 3) * (H_Cubes + 3)
         ProgressBar1.Visible = True
         ProgressBar1.Value = 0
@@ -155,6 +159,7 @@
         MapH.Value = H_Cubes
         lbl_MapH.Text = "Height(" & H_Cubes & ")"
         ProgressBar1.Visible = False
+
     End Sub
     Sub RESTstates()
         xIndex = 0
@@ -202,22 +207,143 @@
                 If CubeStates(xIndex + 1, yIndex + 1) = True Then
                     filledcount += 1
                 End If
-                If CubeStates(xIndex, yIndex) = True Then
-                    If filledcount < 2 Then
-                        NewCubeStates(xIndex, yIndex) = False
-                    ElseIf filledcount = 2 Then
-                        NewCubeStates(xIndex, yIndex) = True
-                    ElseIf filledcount = 3 Then
-                        NewCubeStates(xIndex, yIndex) = True
-                    ElseIf filledcount > 3 Then
-                        NewCubeStates(xIndex, yIndex) = False
+                If AlgToUse = "Default" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount < 2 Then
+                            NewCubeStates(xIndex, yIndex) = False
+                        ElseIf filledcount = 2 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        ElseIf filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        ElseIf filledcount > 3 Then
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
                     End If
-                Else
-                    If filledcount = 3 Then
-                        NewCubeStates(xIndex, yIndex) = True
+                ElseIf AlgToUse = "Live Free or Die" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 0 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        ElseIf filledcount > 0 Then
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 2 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Replicator" Then
+
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount Mod 2 <> 0 Then
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount Mod 2 <> 0 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Replicator 2" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        filledcount += 1
+                        If filledcount Mod 2 <> 0 Then
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount Mod 2 <> 0 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Life Without Death" Then
+                    If CubeStates(xIndex, yIndex) = False Then
+                        If filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Maze" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount >= 1 AndAlso filledcount <= 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Mazectric" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount >= 1 AndAlso filledcount <= 4 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "2X2" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 1 Or filledcount = 2 Or filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 6 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "High Life" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 2 Or filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 6 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Move" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 2 Or filledcount = 4 Or filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 6 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Day & Night" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 3 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 4 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Seeds" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        NewCubeStates(xIndex, yIndex) = False
+                    Else
+                        If filledcount = 2 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
                     End If
                 End If
-
                 yIndex += 1
             End While
             xIndex += 1
@@ -458,6 +584,11 @@
         H_Cubes = MapH.Value
         lbl_MapH.Text = "Height(" & H_Cubes & ")"
         Halfy = H_Cubes / 2
+        ActiveControl = Nothing
+    End Sub
+
+    Private Sub Algorythm_SelectedIndexChanged(sender As Object, e As EventArgs) Handles Algorythm.SelectedIndexChanged
+        AlgToUse = Algorythm.SelectedItem
         ActiveControl = Nothing
     End Sub
 End Class
