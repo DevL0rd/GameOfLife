@@ -23,6 +23,7 @@ Partial Class Form1
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
+        Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form1))
         Me.TimerLoop = New System.Windows.Forms.Timer(Me.components)
         Me.BottomPanel = New System.Windows.Forms.Panel()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -250,9 +251,10 @@ Partial Class Form1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1406, 847)
         Me.Controls.Add(Me.BottomPanel)
+        Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.MinimumSize = New System.Drawing.Size(1422, 886)
         Me.Name = "Form1"
-        Me.Text = "Game Of Life .NET"
+        Me.Text = "Game Of Life - Dustin Harris"
         Me.BottomPanel.ResumeLayout(False)
         Me.BottomPanel.PerformLayout()
         CType(Me.MapH, System.ComponentModel.ISupportInitialize).EndInit()

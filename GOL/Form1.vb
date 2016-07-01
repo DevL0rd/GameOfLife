@@ -417,7 +417,7 @@
         SaveFileDialog1.FileName = ".GOL"
         SaveFileDialog1.ShowDialog()
         Dim wasteofspacetousefilename As String = SaveFileDialog1.FileName
-        SaveFile(SaveFileDialog1.FileName)
+        SaveFile(wasteofspacetousefilename)
         ActiveControl = Nothing
     End Sub
 
@@ -427,8 +427,8 @@
         OpenFileDialog1.FileName = ".GOL"
         OpenFileDialog1.ShowDialog()
         Dim wasteofspacetousefilename As String = OpenFileDialog1.FileName
-        If System.IO.File.Exists(OpenFileDialog1.FileName) Then
-            LoadFile(OpenFileDialog1.FileName)
+        If System.IO.File.Exists(wasteofspacetousefilename) Then
+            LoadFile(wasteofspacetousefilename)
         End If
         ActiveControl = Nothing
     End Sub
