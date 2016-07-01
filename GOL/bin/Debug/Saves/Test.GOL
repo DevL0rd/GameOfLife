@@ -1,3 +1,11 @@
+[WorldData]
+Cubes=100
+W_Cubes=100
+H_Cubes=100
+xInterval=8
+yInterval=8
+MapX=0
+MapY=0
 [0-0]
 IsLive=False
 [0-1]
@@ -8331,7 +8339,7 @@ IsLive=False
 [40-45]
 IsLive=False
 [40-46]
-IsLive=False
+IsLive=True
 [40-47]
 IsLive=False
 [40-48]
@@ -8347,7 +8355,7 @@ IsLive=False
 [40-53]
 IsLive=False
 [40-54]
-IsLive=False
+IsLive=True
 [40-55]
 IsLive=False
 [40-56]
@@ -8537,7 +8545,7 @@ IsLive=False
 [41-45]
 IsLive=False
 [41-46]
-IsLive=False
+IsLive=True
 [41-47]
 IsLive=False
 [41-48]
@@ -8553,7 +8561,7 @@ IsLive=False
 [41-53]
 IsLive=False
 [41-54]
-IsLive=False
+IsLive=True
 [41-55]
 IsLive=False
 [41-56]
@@ -8743,7 +8751,7 @@ IsLive=False
 [42-45]
 IsLive=False
 [42-46]
-IsLive=False
+IsLive=True
 [42-47]
 IsLive=False
 [42-48]
@@ -8759,7 +8767,7 @@ IsLive=False
 [42-53]
 IsLive=False
 [42-54]
-IsLive=False
+IsLive=True
 [42-55]
 IsLive=False
 [42-56]
@@ -8953,7 +8961,7 @@ IsLive=True
 [43-47]
 IsLive=False
 [43-48]
-IsLive=False
+IsLive=True
 [43-49]
 IsLive=False
 [43-50]
@@ -8969,7 +8977,7 @@ IsLive=True
 [43-55]
 IsLive=False
 [43-56]
-IsLive=False
+IsLive=True
 [43-57]
 IsLive=False
 [43-58]
@@ -9149,7 +9157,7 @@ IsLive=False
 [44-42]
 IsLive=False
 [44-43]
-IsLive=False
+IsLive=True
 [44-44]
 IsLive=False
 [44-45]
@@ -9165,7 +9173,7 @@ IsLive=True
 [44-50]
 IsLive=False
 [44-51]
-IsLive=False
+IsLive=True
 [44-52]
 IsLive=False
 [44-53]
@@ -9555,11 +9563,11 @@ IsLive=False
 [46-39]
 IsLive=False
 [46-40]
-IsLive=False
+IsLive=True
 [46-41]
-IsLive=False
+IsLive=True
 [46-42]
-IsLive=False
+IsLive=True
 [46-43]
 IsLive=True
 [46-44]
@@ -9591,11 +9599,11 @@ IsLive=True
 [46-57]
 IsLive=True
 [46-58]
-IsLive=False
+IsLive=True
 [46-59]
-IsLive=False
+IsLive=True
 [46-60]
-IsLive=False
+IsLive=True
 [46-61]
 IsLive=False
 [46-62]
@@ -9985,7 +9993,7 @@ IsLive=False
 [48-48]
 IsLive=False
 [48-49]
-IsLive=False
+IsLive=True
 [48-50]
 IsLive=False
 [48-51]
@@ -10001,7 +10009,7 @@ IsLive=False
 [48-56]
 IsLive=False
 [48-57]
-IsLive=False
+IsLive=True
 [48-58]
 IsLive=False
 [48-59]
@@ -10181,7 +10189,7 @@ IsLive=False
 [49-43]
 IsLive=False
 [49-44]
-IsLive=False
+IsLive=True
 [49-45]
 IsLive=False
 [49-46]
@@ -10197,7 +10205,7 @@ IsLive=False
 [49-51]
 IsLive=False
 [49-52]
-IsLive=False
+IsLive=True
 [49-53]
 IsLive=False
 [49-54]
@@ -10601,7 +10609,7 @@ IsLive=True
 [51-47]
 IsLive=False
 [51-48]
-IsLive=False
+IsLive=True
 [51-49]
 IsLive=False
 [51-50]
@@ -10617,7 +10625,7 @@ IsLive=True
 [51-55]
 IsLive=False
 [51-56]
-IsLive=False
+IsLive=True
 [51-57]
 IsLive=False
 [51-58]
@@ -10797,7 +10805,7 @@ IsLive=False
 [52-42]
 IsLive=False
 [52-43]
-IsLive=False
+IsLive=True
 [52-44]
 IsLive=False
 [52-45]
@@ -10813,7 +10821,7 @@ IsLive=True
 [52-50]
 IsLive=False
 [52-51]
-IsLive=False
+IsLive=True
 [52-52]
 IsLive=False
 [52-53]
@@ -11203,11 +11211,11 @@ IsLive=False
 [54-39]
 IsLive=False
 [54-40]
-IsLive=False
+IsLive=True
 [54-41]
-IsLive=False
+IsLive=True
 [54-42]
-IsLive=False
+IsLive=True
 [54-43]
 IsLive=True
 [54-44]
@@ -11239,11 +11247,11 @@ IsLive=True
 [54-57]
 IsLive=True
 [54-58]
-IsLive=False
+IsLive=True
 [54-59]
-IsLive=False
+IsLive=True
 [54-60]
-IsLive=False
+IsLive=True
 [54-61]
 IsLive=False
 [54-62]
@@ -11633,7 +11641,7 @@ IsLive=False
 [56-48]
 IsLive=False
 [56-49]
-IsLive=False
+IsLive=True
 [56-50]
 IsLive=False
 [56-51]
@@ -11649,7 +11657,7 @@ IsLive=False
 [56-56]
 IsLive=False
 [56-57]
-IsLive=False
+IsLive=True
 [56-58]
 IsLive=False
 [56-59]
@@ -11829,7 +11837,7 @@ IsLive=False
 [57-43]
 IsLive=False
 [57-44]
-IsLive=False
+IsLive=True
 [57-45]
 IsLive=False
 [57-46]
@@ -11845,7 +11853,7 @@ IsLive=False
 [57-51]
 IsLive=False
 [57-52]
-IsLive=False
+IsLive=True
 [57-53]
 IsLive=False
 [57-54]
@@ -12039,7 +12047,7 @@ IsLive=False
 [58-45]
 IsLive=False
 [58-46]
-IsLive=False
+IsLive=True
 [58-47]
 IsLive=False
 [58-48]
@@ -12055,7 +12063,7 @@ IsLive=False
 [58-53]
 IsLive=False
 [58-54]
-IsLive=False
+IsLive=True
 [58-55]
 IsLive=False
 [58-56]
@@ -12245,7 +12253,7 @@ IsLive=False
 [59-45]
 IsLive=False
 [59-46]
-IsLive=False
+IsLive=True
 [59-47]
 IsLive=False
 [59-48]
@@ -12261,7 +12269,7 @@ IsLive=False
 [59-53]
 IsLive=False
 [59-54]
-IsLive=False
+IsLive=True
 [59-55]
 IsLive=False
 [59-56]
@@ -12451,7 +12459,7 @@ IsLive=False
 [60-45]
 IsLive=False
 [60-46]
-IsLive=False
+IsLive=True
 [60-47]
 IsLive=False
 [60-48]
@@ -12467,7 +12475,7 @@ IsLive=False
 [60-53]
 IsLive=False
 [60-54]
-IsLive=False
+IsLive=True
 [60-55]
 IsLive=False
 [60-56]
@@ -21216,9 +21224,3 @@ IsLive=False
 IsLive=False
 [102-102]
 IsLive=False
-[WorldData]
-Cubes=100
-W_Cubes=100
-H_Cubes=100
-xInterval=8
-yInterval=8

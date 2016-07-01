@@ -329,7 +329,7 @@
     End Sub
 
     Private Sub Form1_MouseDown(sender As Object, e As MouseEventArgs) Handles Me.MouseDown
-        ActiveControl = Nothing
+
         If e.Button = MouseButtons.Left Then
             LeftMouse = True
         ElseIf e.Button = MouseButtons.Right Then
@@ -360,6 +360,7 @@
 
     Private Sub RenderSpeed_Scroll(sender As Object, e As EventArgs) Handles RenderSpeed.Scroll
         TimerLoop.Interval = RenderSpeed.Value
+        ActiveControl = Nothing
     End Sub
 
     Private Sub Form1_MouseWheel(sender As Object, e As MouseEventArgs) Handles Me.MouseWheel
@@ -380,11 +381,10 @@
         SaveFileDialog1.Filter = "GOL Files (*.GOL*)|*.GOL"
         SaveFileDialog1.InitialDirectory = BIN
         SaveFileDialog1.FileName = ".GOL"
-
-        If SaveFileDialog1.ShowDialog = Windows.Forms.DialogResult.OK Then
-            Dim wasteofspacetousefilename As String = SaveFileDialog1.FileName
-            SaveFile(SaveFileDialog1.FileName)
-        End If
+        SaveFileDialog1.ShowDialog()
+        Dim wasteofspacetousefilename As String = SaveFileDialog1.FileName
+        SaveFile(SaveFileDialog1.FileName)
+        ActiveControl = Nothing
     End Sub
 
     Private Sub btn_Load_Click(sender As Object, e As EventArgs) Handles btn_Load.Click
@@ -396,6 +396,6 @@
         If System.IO.File.Exists(OpenFileDialog1.FileName) Then
             LoadFile(OpenFileDialog1.FileName)
         End If
-
+        ActiveControl = Nothing
     End Sub
 End Class
