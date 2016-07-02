@@ -70,7 +70,7 @@ Partial Class Form1
         Me.BottomPanel.Controls.Add(Me.btn_Save)
         Me.BottomPanel.Controls.Add(Me.RenderSpeed)
         Me.BottomPanel.Controls.Add(Me.Algorythm)
-        Me.BottomPanel.Location = New System.Drawing.Point(0, 817)
+        Me.BottomPanel.Location = New System.Drawing.Point(0, 809)
         Me.BottomPanel.Name = "BottomPanel"
         Me.BottomPanel.Size = New System.Drawing.Size(1406, 30)
         Me.BottomPanel.TabIndex = 0
@@ -190,9 +190,9 @@ Partial Class Form1
         '
         Me.ProgressBar1.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Right), System.Windows.Forms.AnchorStyles)
         Me.ProgressBar1.ForeColor = System.Drawing.Color.Green
-        Me.ProgressBar1.Location = New System.Drawing.Point(1232, 4)
+        Me.ProgressBar1.Location = New System.Drawing.Point(1265, 4)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(171, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(141, 23)
         Me.ProgressBar1.TabIndex = 3
         Me.ProgressBar1.Visible = False
         '
@@ -250,10 +250,11 @@ Partial Class Form1
         Me.Algorythm.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Algorythm.ForeColor = System.Drawing.Color.White
         Me.Algorythm.FormattingEnabled = True
-        Me.Algorythm.Items.AddRange(New Object() {"Default", "Replicator", "Replicator 2", "Seeds", "Live Free or Die", "Life Without Death", "Maze", "Mazectric", "2X2", "High Life", "Move", "Day & Night"})
+        Me.Algorythm.Items.AddRange(New Object() {"2X2", "34 Life", "Amoeba", "Assimilation", "Coral", "Day & Night", "Default", "Diamoeba", "Gnarl", "High Life", "Life Without Death", "Live Free or Die", "Long life", "Maze", "Mazectric", "Move", "Pseudo life", "Replicator", "Replicator 2", "Seeds", "Serviettes", "Stains", "WalledCities"})
         Me.Algorythm.Location = New System.Drawing.Point(1232, 6)
         Me.Algorythm.Name = "Algorythm"
         Me.Algorythm.Size = New System.Drawing.Size(171, 21)
+        Me.Algorythm.Sorted = True
         Me.Algorythm.TabIndex = 13
         Me.Algorythm.TabStop = False
         Me.Algorythm.Text = "Default"
@@ -266,10 +267,10 @@ Partial Class Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1406, 847)
+        Me.ClientSize = New System.Drawing.Size(1406, 839)
         Me.Controls.Add(Me.BottomPanel)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
-        Me.MinimumSize = New System.Drawing.Size(1422, 886)
+        Me.MinimumSize = New System.Drawing.Size(1422, 878)
         Me.Name = "Form1"
         Me.Text = "Game Of Life - Dustin Harris"
         Me.BottomPanel.ResumeLayout(False)

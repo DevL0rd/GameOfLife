@@ -343,6 +343,134 @@
                             NewCubeStates(xIndex, yIndex) = True
                         End If
                     End If
+                ElseIf AlgToUse = "Amoeba" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 1 Or filledcount = 3 Or filledcount = 5 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 5 Or filledcount = 7 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Assimilation" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 4 Or filledcount = 5 Or filledcount = 6 Or filledcount = 7 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 4 Or filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Coral" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount >= 4 AndAlso filledcount <= 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "34 Life" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 3 Or filledcount = 4 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 4 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Diamoeba" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount >= 5 AndAlso filledcount <= 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 5 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Gnarl" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 1 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 1 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Long life" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 4 Or filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Pseudo life" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 2 Or filledcount = 3 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 5 Or filledcount = 7 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Serviettes" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        NewCubeStates(xIndex, yIndex) = False
+                    Else
+                        If filledcount = 2 Or filledcount = 3 Or filledcount = 4 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "Stains" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 2 Or filledcount = 3 Or filledcount = 5 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 3 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
+                ElseIf AlgToUse = "WalledCities" Then
+                    If CubeStates(xIndex, yIndex) = True Then
+                        If filledcount = 2 Or filledcount = 3 Or filledcount = 4 Or filledcount = 5 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        Else
+                            NewCubeStates(xIndex, yIndex) = False
+                        End If
+                    Else
+                        If filledcount = 4 Or filledcount = 5 Or filledcount = 6 Or filledcount = 7 Or filledcount = 8 Then
+                            NewCubeStates(xIndex, yIndex) = True
+                        End If
+                    End If
                 End If
                 yIndex += 1
             End While
