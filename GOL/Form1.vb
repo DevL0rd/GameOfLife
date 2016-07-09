@@ -175,14 +175,11 @@
 
     Sub ApplyRules()
         xIndex = 1
-
         Dim NewCubeStates(900, 900) As Boolean
         While xIndex <= W_Cubes - 1
             yIndex = 1
             While yIndex <= H_Cubes - 1
-
                 filledcount = 0
-
                 If CubeStates(xIndex - 1, yIndex - 1) = True Then
                     filledcount += 1
                 End If
@@ -621,6 +618,7 @@
         ElseIf e.Button = MouseButtons.Right Then
             RightMouse = True
         End If
+        ActiveControl = Nothing
     End Sub
 
     Private Sub Form1_MouseUp(sender As Object, e As MouseEventArgs) Handles Me.MouseUp
